@@ -31,6 +31,66 @@ const searchKeyword = ref('')
                         title="Vue.js Developer"
                         description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem sed necessitatibus est?"
                     />
+                    <GroupItem
+                        image="https://source.unsplash.com/random"
+                        title="Laravel Developer"
+                        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem sed necessitatibus est?"
+                    />
+                    <GroupItem
+                        image="https://source.unsplash.com/random"
+                        title="Vue.js Developer"
+                        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem sed necessitatibus est?"
+                    />
+                    <GroupItem
+                        image="https://source.unsplash.com/random"
+                        title="Laravel Developer"
+                        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem sed necessitatibus est?"
+                    />
+                    <GroupItem
+                        image="https://source.unsplash.com/random"
+                        title="Vue.js Developer"
+                        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem sed necessitatibus est?"
+                    />
+                    <GroupItem
+                        image="https://source.unsplash.com/random"
+                        title="Laravel Developer"
+                        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem sed necessitatibus est?"
+                    />
+                    <GroupItem
+                        image="https://source.unsplash.com/random"
+                        title="Vue.js Developer"
+                        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem sed necessitatibus est?"
+                    />
+                    <GroupItem
+                        image="https://source.unsplash.com/random"
+                        title="Laravel Developer"
+                        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem sed necessitatibus est?"
+                    />
+                    <GroupItem
+                        image="https://source.unsplash.com/random"
+                        title="Vue.js Developer"
+                        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem sed necessitatibus est?"
+                    />
+                    <GroupItem
+                        image="https://source.unsplash.com/random"
+                        title="Laravel Developer"
+                        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem sed necessitatibus est?"
+                    />
+                    <GroupItem
+                        image="https://source.unsplash.com/random"
+                        title="Vue.js Developer"
+                        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem sed necessitatibus est?"
+                    />
+                    `<GroupItem
+                        image="https://source.unsplash.com/random"
+                        title="Laravel Developer"
+                        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem sed necessitatibus est?"
+                    />
+                    <GroupItem
+                        image="https://source.unsplash.com/random"
+                        title="Vue.js Developer"
+                        description="Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem sed necessitatibus est?"
+                    />`
                 </div>
             </div>
 </template>
