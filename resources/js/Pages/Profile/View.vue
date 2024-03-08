@@ -10,7 +10,7 @@
   import Edit from '@/Pages/Profile/Edit.vue'
   import PrimaryButton from '@/Components/PrimaryButton.vue'
 
-  import { XMarkIcon, CheckCircleIcon } from '@heroicons/vue/24/solid'
+  import { XMarkIcon, CheckCircleIcon, CameraIcon } from '@heroicons/vue/24/solid'
   import { useForm } from '@inertiajs/vue3'
   
   const imagesForm = useForm({
@@ -21,6 +21,7 @@
   const authUser = usePage().props.auth.user;
   const isMyProfile = computed(() => authUser && authUser.id === props.user.id)
   const coverImageSrc = ref('');
+  const avatarImageSrc = ref('');
   const showNotification = ref('true');
   const props = defineProps({
     errors: Object,
@@ -28,6 +29,9 @@
         type: Boolean,
     },
     status: {
+        type: String,
+    },
+    success: {
         type: String,
     },
     user: {
@@ -47,16 +51,47 @@ function onCoverChange(e) {
   }
 }
 
-  function cancelCoverImage() {
+  function resetCoverImage() {
     imagesForm.cover = null;
     coverImageSrc.value = null;
   }
 
   function submitCoverImage() {
     console.log(imagesForm.cover)
-    imagesForm.post(route('profile.updateCover'), {
+    imagesForm.post(route('profile.updateImages'), {
       onSuccess: (user) => {
-        cancelCoverImage()
+        resetCoverImage()
+        setTimeout(() => {
+          showNotification.value = false
+        }, 3000);
+      },
+
+    })
+  }
+
+  function onAvatarChange(e) {
+    console.log(e)
+    imagesForm.avatar=e.target.files[0]
+    if(imagesForm.avatar) {
+      const reader = new FileReader()
+      reader.onload = () => {
+        avatarImageSrc.value = reader.result;
+      }
+      reader.readAsDataURL(imagesForm.avatar)
+    }
+  }
+  
+
+  function resetAvatarImage() {
+    imagesForm.avatar = null;
+    avatarImageSrc.value = null;
+  }
+
+  function submitAvatarImage() {
+    console.log(imagesForm.avatar)
+    imagesForm.post(route('profile.updateImages'), {
+      onSuccess: (user) => {
+        resetAvatarImage()
         setTimeout(() => {
           showNotification.value = false
         }, 3000);
@@ -80,12 +115,12 @@ function onCoverChange(e) {
 
       <!-- container or w-[768px] -->
       <div class="max-w-[768px] mx-auto h-full overflow-auto">
-
+        <!-- cover update noti -->
         <div
-          v-show="showNotification && status === 'cover-image-updated'"
+          v-show="showNotification && success === 'cover-image-updated'"
           class="my-2 py-2 px-3 font-medium text-sm bg-emerald-500 text-white"
         >
-          Cover image has been updated.
+          {{ success }}
         </div>
         <div
           v-if="errors.cover"
@@ -95,8 +130,10 @@ function onCoverChange(e) {
         </div>
 
 
-        <div class="group relative bg-white">
-          <img 
+        <div class="relative bg-white">
+          <!-- cover image -->
+          <div class="group">
+            <img 
               :src="coverImageSrc || user.cover_url || '/img/default_cover.jpeg'" 
               alt=""
               class="w-full h-[200px] object-cover"
@@ -119,7 +156,7 @@ function onCoverChange(e) {
                 class="flex gap-2 opacity-0 group-hover:opacity-100 transition-all transform
                 transition-all transform">
               <button 
-                @click="cancelCoverImage"
+                @click="resetCoverImage"
                 class="bg-gray-50 hover:bg-gray-100 text-gray-800 py-1 px-2 text-xs flex items-center ">
               <XMarkIcon class="h-6 w-6 mr-2"/>
 
@@ -136,13 +173,51 @@ function onCoverChange(e) {
               
             </div>
           </div>
+          </div>
 
+          <!-- avatar -->
           <div class="flex">
-            <img 
-              src="https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp" 
-              alt="" 
-              class="ml-[48px] w-[128px] h-[128px] -mt-[64px]"
-            >
+            <div class="flex items-center justify-center group/avatar relative -mt-[64px] ml-[48px] w-[128px] h-[128px] rounded-full">
+              <img 
+                :src="avatarImageSrc || user.avatar_url || '/img/default_avatar.png'" 
+                alt="" 
+                class="w-full h-full object-cover rounded-full"
+              >
+
+                <button 
+                  v-if="!avatarImageSrc" 
+                  class="absolute left-0 top-0 right-0 bottom-0 flex items-center justify-center bg-black/50 text-gray-200 rounded-full opacity-0 group-hover/avatar:opacity-100 transition-all transform""
+                >
+                  <CameraIcon class="w-8 h-8"/>
+
+                  <input 
+                    @change = "onAvatarChange"
+                    type="file" 
+                    class="cursor-pointer w-full opacity-0  absolute left-0 top-0 bottom-0 right-0 "
+                  >
+                </button>
+                <div 
+                  v-else 
+                  class="absolute top-1 right-0 flex flex-col gap-2">
+                  <button 
+                    @click="resetAvatarImage"
+                    class="w-7 h-7 flex items-center justify-center bg-red-500/80 text-white rounded-full">
+                  <XMarkIcon class="h-5 w-5"/>
+
+                     
+                </button>
+                <button 
+                  @click="submitAvatarImage"
+                  class="w-7 h-7 flex items-center justify-center bg-emerald-500/80 text-white rounded-full">
+                  <CheckCircleIcon class="h-5 w-5"/>
+
+                  
+                </button>
+                    
+                  
+                </div>
+              
+            </div>
 
             <div class="flex justify-between items-center flex-1 p-4">
               <h2 class="font-bold text-lg">{{ user.name }}</h2>
