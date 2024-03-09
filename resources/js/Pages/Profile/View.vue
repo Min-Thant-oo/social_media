@@ -17,7 +17,7 @@
     avatar: null,
     cover: null,
   })
-
+        
   const authUser = usePage().props.auth.user;
   const isMyProfile = computed(() => authUser && authUser.id === props.user.id)
   const coverImageSrc = ref('');
