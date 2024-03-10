@@ -31,7 +31,7 @@ import {
         </div>
 
 
-        <div class="h-full flex-col overflow-hidden hidden lg:flex">       
+        <div class="h-full flex-col overflow-hidden hidden lg:flex px-0.5">       
             <h2 class="text-xl font-bold">My Friends</h2>
             <FollowingListItems />
         </div>
