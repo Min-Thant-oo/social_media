@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import TextInput from '@/Components/TextInput.vue';
 import InputTextArea from '@/Components/InputTextArea.vue'
+// import In
 import { useForm } from '@inertiajs/vue3';
 
 const postCreating = ref(false)
@@ -24,7 +25,7 @@ function submit() {
 </script>
 
 <template>
-    <div class="p-4 bg-white rounded-lg border mb-3">
+    <div class="p-4 pb-0 bg-white rounded-lg border mb-3">
         <InputTextArea
             @click="postCreating=true" 
             class=""
@@ -32,7 +33,7 @@ function submit() {
             v-model="newPostForm.body"
             
         />
-        <div v-if="postCreating" class="flex gap-2 justify-between">
+        <div v-if="postCreating" class="flex gap-2 justify-between pb-4">
             <button type="button" class="relative rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 Attach files
                 <input type="file" class="absolute left-0 right-0 top-0 bottom-0 opacity-0">
