@@ -134,7 +134,7 @@ function onCoverChange(e) {
           <!-- cover image -->
           <div class="group">
             <img 
-              :src="coverImageSrc || user.cover_url || '/img/default_cover.jpeg'" 
+              :src="coverImageSrc || user.cover_url || '/img/default_cover.jpeg' " 
               alt=""
               class="w-full h-[200px] object-cover"
           >

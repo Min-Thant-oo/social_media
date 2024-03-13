@@ -11,9 +11,9 @@ defineProps({
 })
 </script>
 
-<template>
+<template>  
 <div class="flex items-center gap-2">
-        <a href="javascript:void[0]">
+        <a href="#">
             <img :src="post.user.avatar_url" alt="" class="w-[40px] rounded-full aspect-square border border-2 hover:border-blue-500 transition-all"> 
         </a>
         <div>

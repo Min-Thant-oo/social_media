@@ -1,7 +1,5 @@
 <script setup>
-import FollowingItem from './FollowingItem.vue';
 import FollowingListItems from './FollowingListItems.vue';
-import TextInput from '@/Components/TextInput.vue';
 import {
     Disclosure,
     DisclosureButton,

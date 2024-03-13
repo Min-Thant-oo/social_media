@@ -12,8 +12,6 @@ import {
 <template>
     <div class="px-3 bg-white rounded border h-full py-3 overflow-hidden">
         
-
-        
         <div class="block lg:hidden">
             <Disclosure v-slot="{ open }">
 
@@ -34,7 +32,7 @@ import {
         </div>
 
 
-        <div class="h-full flex-col overflow-hidden hidden lg:flex px-0.5">       
+        <div class="hidden lg:flex flex-col px-0.5 h-full overflow-hidden">       
             <h2 class="text-xl font-bold">My Groups</h2>
             <GroupListItems />
         </div>

@@ -7,8 +7,8 @@
 </script>
 
 <template>
-    <div class="mb-3 cursor-pointer hover:bg-gray-100">
-        <div class="flex items-start gap-1 py-2 px-2">
+    <div id="1" class="mb-3 cursor-pointer hover:bg-gray-100">
+        <div id="2" class="flex items-start gap-1 py-2 px-2">
             <img 
                 :src="image" 
                 alt="pic"

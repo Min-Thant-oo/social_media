@@ -1,18 +1,12 @@
 <script setup>
 import { ref } from 'vue';
-import TextInput from '@/Components/TextInput.vue';
 import InputTextArea from '@/Components/InputTextArea.vue'
-// import In
 import { useForm } from '@inertiajs/vue3';
 
 const postCreating = ref(false)
 
 const newPostForm = useForm({
     body: '',
-})
-
-const newPost = ref({
-    body: ''
 })
 
 function submit() {
@@ -28,7 +22,6 @@ function submit() {
     <div class="p-4 pb-0 bg-white rounded-lg border mb-3">
         <InputTextArea
             @click="postCreating=true" 
-            class=""
             placeholder="Create new post"
             v-model="newPostForm.body"
             
