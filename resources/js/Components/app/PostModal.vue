@@ -35,7 +35,8 @@
 
     const form = useForm({
         id: null,
-        body: ''
+        body: '',
+        attachments: []
     })
 
     const show = computed({
@@ -53,17 +54,21 @@
 
   function closeModal() {
     show.value = false
+    resetModal();
+  }
+
+  function resetModal() {
     form.reset()
     attachmentFiles.value = []
   }
 
   function submit() {
+    form.attachments = attachmentFiles.value.map(myFile => myFile.file)
         if(form.id) {
             form.put(route('post.update', props.post.id), {
                 preserveScroll: true,
                 onSuccess: () => {
-                    show.value = false
-                    form.reset()
+                    closeModal();
 
                 }
             })
@@ -72,8 +77,7 @@
             form.post(route('post.create'), {
                 preserveScroll: true,
                 onSuccess: ()=> {
-                    show.value = false
-                    form.reset()
+                    closeModal();
 
                 }
             })
@@ -166,7 +170,9 @@
                         <PostUserHeader :post="post" :show-time="false" class="mb-4" />
                         <ckeditor :editor="editor" v-model="form.body" :config="editorConfig"></ckeditor>
 
-                        <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 my-3">
+                        <div class="grid gap-3 my-3" :class="[
+                            attachmentFiles.length == 1 ? 'grid-cols-1' : 'grid-cols-2'
+                        ]">
                             <template v-for="(myFile, ind) of attachmentFiles" >
                                 
                                 <div class=" group bg-blue-100 aspect-square flex flex-col items-center justify-center text-gray-500 relative">
@@ -183,7 +189,7 @@
                                         v-if="isImage(myFile.file)" 
                                         :src="myFile.url" 
                                         alt="" 
-                                        class="object-cover aspect-square"
+                                        class="object-contain aspect-square"
                                     >
 
                                     <template v-else>
